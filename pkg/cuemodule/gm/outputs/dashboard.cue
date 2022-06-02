@@ -12,6 +12,8 @@ dashboard_config: [
   #listener & {
     listener_key: LocalName
     _spire_self: Name
+    _gm_observables_topic: Name
+    _is_ingress: true
   },
   #cluster & { cluster_key: LocalName, _upstream_port: 1337 },
   #route & { route_key: LocalName },

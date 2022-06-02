@@ -19,6 +19,8 @@ import (
 
 #listener: greymatter.#Listener & {
   _tcp_upstream?: string // for TCP listeners, you can just specify the upstream cluster
+  _is_ingress: bool | *false // specifiy if this listener is for ingress which will active default HTTP filters
+  _gm_observables_topic: string // unique topic name for observable audit collection
   _spire_self: string    // can specify current identity - defaults to "edge"
   _spire_other: string // can specify an allowable downstream identity - defaults to "edge"
 
@@ -36,9 +38,10 @@ import (
       stat_prefix: _tcp_upstream
     }
   }
+
   // if there isn't a tcp cluster, then assume http filters, and provide the usual defaults
-  if _tcp_upstream == _|_ {
-    active_http_filters: [...string] | *[ "gm.metrics" ]
+  if _tcp_upstream == _|_ && _is_ingress == true {
+    active_http_filters: [...string] | *[ "gm.metrics", "gm.observables" ]
     http_filters: {
       gm_metrics: {
         metrics_host: "0.0.0.0" // TODO are we still scraping externally? If not, set this to 127.0.0.1
@@ -53,6 +56,9 @@ import (
           redis_connection_string: string | *"redis://127.0.0.1:\(defaults.ports.redis_ingress)"
           push_interval_seconds: 10
         }
+      },
+      gm_observables: {
+        topic: _gm_observables_topic
       }
     }
   }

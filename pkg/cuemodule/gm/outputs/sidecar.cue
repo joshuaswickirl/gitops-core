@@ -13,8 +13,10 @@ package only
     // sidecar -> local service
     #domain & { domain_key: LocalName },
     #listener & {
-      listener_key: LocalName,
+      listener_key: LocalName
       _spire_self: Name
+        _gm_observables_topic: Name
+      _is_ingress: true
     },
     #cluster & { cluster_key: LocalName, _upstream_port: Port },
     #route & { route_key: LocalName},

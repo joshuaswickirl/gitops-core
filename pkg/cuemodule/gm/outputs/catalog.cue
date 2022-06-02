@@ -13,6 +13,8 @@ catalog_config: [
   #listener & {
     listener_key: CatalogIngressName
     _spire_self: Name
+    _gm_observables_topic: Name
+    _is_ingress: true
   },
   #cluster & { cluster_key: CatalogIngressName, _upstream_port: 8080 },
   #route & { route_key: CatalogIngressName },
@@ -47,7 +49,7 @@ catalog_config: [
     _spire_other: Name
     },
   #route & {
-    domain_key: "edge",
+    domain_key: "edge"
     route_key: Name
     route_match: {
       path: "/services/catalog/"

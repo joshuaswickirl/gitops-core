@@ -26,6 +26,8 @@ edge_config: [
     ip: "127.0.0.1" // egress listeners are local-only
     port: defaults.ports.redis_ingress
     _tcp_upstream: defaults.redis_cluster_name
+    _gm_observables_topic: Name
+    _is_ingress: true
   },
 
   #proxy & {

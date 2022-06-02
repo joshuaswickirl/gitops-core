@@ -13,6 +13,8 @@ controlensemble_config: [
   #listener & {
     listener_key: ControlAPIIngressName
     _spire_self: Name
+    _gm_observables_topic: Name
+    _is_ingress: true
   },
   #cluster & { cluster_key: ControlAPIIngressName, _upstream_port: 5555 },
   #route & { route_key: ControlAPIIngressName },
