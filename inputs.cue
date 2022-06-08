@@ -30,7 +30,7 @@ mesh: meshv1.#Mesh & {
     release_version: string | *"1.7" // no longer does anything, for the moment
     zone: string | *"default-zone"
     images: { // TODO start with defaults from below
-      proxy: string | *"docker.greymatter.io/release/gm-proxy:1.7.0-rc.4"
+      proxy: string | *"docker.greymatter.io/release/gm-proxy:1.7.0"
       catalog: string | *"docker.greymatter.io/release/gm-catalog:3.0.0"
       dashboard: string | *"docker.greymatter.io/release/gm-dashboard:6.0.0"
 
