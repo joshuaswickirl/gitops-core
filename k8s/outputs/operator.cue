@@ -265,8 +265,8 @@ operator_sts: [
             }
             resources: {
               limits: {
-                cpu:    "200m"
-                memory: "300Mi"
+                cpu:    "300m"
+                memory: "500Mi"
               }
               requests: {
                 cpu:    "100m"
