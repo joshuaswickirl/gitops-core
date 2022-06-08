@@ -49,7 +49,6 @@ defaults: {
   xds_host: "controlensemble.\(mesh.spec.install_namespace).svc.cluster.local"
   redis_cluster_name: "redis"
   redis_host: "\(redis_cluster_name).\(mesh.spec.install_namespace).svc.cluster.local"
-  spire_selinux_context: string | *"s0:c30,c5"
   sidecar_list: [...string] | *["dashboard", "catalog", "controlensemble", "edge"]
 
   ports: {
