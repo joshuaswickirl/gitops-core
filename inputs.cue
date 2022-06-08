@@ -34,7 +34,7 @@ mesh: meshv1.#Mesh & {
       catalog: string | *"docker.greymatter.io/release/gm-catalog:3.0.0"
       dashboard: string | *"docker.greymatter.io/release/gm-dashboard:6.0.0"
 
-      control: string | *"docker.greymatter.io/internal/gm-control:1.7.1-rc.1" // TODO remove -rc.1 - only here to test GitOps
+      control: string | *"docker.greymatter.io/internal/gm-control:1.7.1"
       control_api: string | *"docker.greymatter.io/internal/gm-control-api:1.7.1"
 
       redis: string | *"redis:latest"
