@@ -211,8 +211,6 @@ operator_sts: [
           }
           containers: [{
             if !config.debug {
-              // command: ["sleep"] // DEBUG
-              // args: ["30000"]
               command: [
                 "/app/operator"
               ]
