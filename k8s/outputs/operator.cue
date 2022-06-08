@@ -220,6 +220,7 @@ operator_sts: [
                 args: [
                   "-repo", "git@github.com:greymatter-io/gitops-core.git",
                   "-sshPrivateKeyPath", "/app/.ssh/id_ed25519",
+                  "-branch", "update-mesh-upon-changes",
                 ]
               }
               livenessProbe: {
