@@ -7,7 +7,7 @@ import (
 
 config: {
 	// Flags
-	spire:           bool | *true @tag(spire,type=bool)           // enable Spire-based mTLS
+	spire:           bool | *false @tag(spire,type=bool)           // enable Spire-based mTLS
 	auto_apply_mesh: bool | *true  @tag(auto_apply_mesh,type=bool) // apply the default mesh specified above after a delay
 	openshift:       bool | *false @tag(openshift,type=bool)
 
