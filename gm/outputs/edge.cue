@@ -19,8 +19,11 @@ edge_config: [
     _gm_observables_topic: Name
     _is_ingress: true
     _enable_oidc_authentication: true
+    _enable_jwt_authn: true 
+    _enable_rbac: true
+
     http_filters: {
-      gm_oidc_authentication: {
+      "gm_oidc-authentication": {
         accessToken: {
           location: "cookie"
           key: "access_token"
@@ -55,7 +58,7 @@ edge_config: [
         clientSecret: ClientSecret
         additionalScopes: ["openid"]
       }
-      gm_ensure_variables: {
+      "gm_ensure-variables": {
         rules: [
 				{
 					location: "cookie"
@@ -67,6 +70,9 @@ edge_config: [
 						},
 					]
 				}]
+      }
+      "envoy_jwt-authn": {
+
       }
     }
   },

@@ -4,6 +4,7 @@ package greymatter
 import (
   greymatter "greymatter.io/api"
   rbac "envoyproxy.io/extensions/filters/http/rbac/v3"
+  jwt_authn "envoyproxy.io/extensions/filters/http/jwt_authn/v3"
 )
 
 /////////////////////////////////////////////////////////////
@@ -27,6 +28,7 @@ import (
   _enable_oidc_authentication: bool | *false 
   _enable_oidc_validation: bool | *false
   _enable_rbac: bool | *false
+  _enable_jwt_authn: bool | *false
 
 
   listener_key: string
@@ -54,6 +56,9 @@ import (
       if _enable_oidc_validation {
         "gm.oidc-validation",
       }
+      if _enable_jwt_authn {
+        "envoy.jwt_authn",
+      }
       if _enable_rbac {
         "envoy.rbac",
       }
@@ -61,6 +66,8 @@ import (
       ...string
     ] 
     http_filters: {
+        //Important: If your filter is multiple words, make it a quoted field
+	      //so that gm-control can pick up the configuration 
         gm_metrics: {
           metrics_host: "0.0.0.0" // TODO are we still scraping externally? If not, set this to 127.0.0.1
           metrics_port: 8081
@@ -79,7 +86,7 @@ import (
           topic: _gm_observables_topic
         }
       if _enable_oidc_authentication {
-        gm_oidc_authentication: {        
+        "gm_oidc-authentication": {        
           provider: string | *""
           serviceUrl:   string | *""
           callbackPath: string | *""
@@ -137,7 +144,7 @@ import (
         }
       }
       if _enable_oidc_validation {
-        gm_oidc_validation: {
+        "gm_oidc-validation": {
           enforce: bool | *false
           if enforce {
             enforceResponseCode: int32 | *403
@@ -162,6 +169,9 @@ import (
       }
       if _enable_rbac {
         envoy_rbac: #envoy_rbac_filter
+      }
+      if _enable_jwt_authn {
+        "envoy_jwt-authn": #envoy_jwt_authn_filter
       }
     }
   }
@@ -275,6 +285,8 @@ import (
   }
   ecdh_curves: ["X25519:P-256:P-521:P-384"]
 }
+
+#envoy_jwt_authn_filter: jwt_authn.#JwtAuthentication
 
 #envoy_rbac_filter: rbac.#RBAC | *#default_rbac
 #default_rbac: {
